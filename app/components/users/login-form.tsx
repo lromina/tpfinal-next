@@ -11,24 +11,32 @@ export const LoginForm = () => {
   return (
     <form
       className="flex flex-col items-center"
-      onSubmit={async (event) => { // funcion que previene q no se recargue la pagina, que este ok y enviar la pagina
+      onSubmit={async (event) => { // funcion que previene q no se recargue la pagina, que este ok y enviar la pagina y lo hacemos asincrono
         event.preventDefault();
+
+        // console.log('event' , event);
 
         // get form data
         const formData = new FormData(event.currentTarget);
         const user = formData.get('user')?.toString();
-        const password = formData.get('password')?.toString();
+        const clave = formData.get('clave')?.toString();
 
+        // console.log('user', user);
+        // console.log('password', clave);
 
-        const response = await fetch('/api/login', {
+        //creamos una constante donde le enviamos nuestros datos a la api
+        const response = await fetch('http://localhost:3001/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ user, password }),
+          body: JSON.stringify({ user, clave }), //lo cambiamos a string
         });
 
+        //creamos una constante que espera los datos del json
         const data = await response.json();
+
+        console.log('data recibida' , data);
 
         if (response.ok === false) {
           setError(data.message);
@@ -41,12 +49,12 @@ export const LoginForm = () => {
       <input
         type="text"
         name="user"
-        placeholder="Email"
+        placeholder="Usuario"
         className="w-80 h-12 p-4 mb-4 border-2 border-gray-300 text-black"
       />
       <input
         type="password"
-        name="password"
+        name="clave"
         placeholder="Contraseña"
         className="w-80 h-12 p-4 mb-4 border-2 border-gray-300 text-black"
       />
