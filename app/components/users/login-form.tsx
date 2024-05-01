@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  const router = useRouter(); // es para obtener las rutas y funciones como push
 
   return (
     <form
@@ -25,7 +25,7 @@ export const LoginForm = () => {
         // console.log('password', clave);
 
         //creamos una constante donde le enviamos nuestros datos a la api
-        const response = await fetch('http://localhost:3001/login', {
+        const response = await fetch('/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const LoginForm = () => {
         //creamos una constante que espera los datos del json
         const data = await response.json();
 
-        console.log('data recibida' , data);
+        // console.log('data recibida' , data);
 
         if (response.ok === false) {
           setError(data.message);
