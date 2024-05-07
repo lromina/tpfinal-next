@@ -27,7 +27,7 @@ export default async function DashboardPage() {
     //     };
     //   }
 
-    console.log('Tipo de datos de data:', typeof data);
+    // console.log('Tipo de datos de data:', typeof data);
     return (
 
         //vamos a recorrer todos los paises 
