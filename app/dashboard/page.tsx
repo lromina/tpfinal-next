@@ -8,12 +8,12 @@ const getDashboardData = async () => {
         return data;
 
     } catch (error) {
-        console.error('Error fetching dashboard data:', error);
+        console.error(error);
         return {data:  []};
     }
 };
 
-export default async function Page() {
+export default async function DashboardPage() {
     try {
          // es MUY importante que la constante este entre parentesis para transformar los objetos en array
     const { data } = await getDashboardData(); // espero los datos de la api y las guardo en response
