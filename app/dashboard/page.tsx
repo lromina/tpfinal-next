@@ -13,7 +13,14 @@ export default async function Page() {
          // es MUY importante que la constante este entre parentesis para transformar los objetos en array
     const { data } = await getDashboardData(); // espero los datos de la api y las guardo en response
 
-   
+    interface Country {
+        name: {
+          common: string;
+        };
+        flags: {
+          png: string;
+        };
+      }
 
     console.log('Tipo de datos de data:', typeof data);
     return (
@@ -22,7 +29,7 @@ export default async function Page() {
         <div className="flex flex-col gap-4">
             <div>Paises</div>
             <div className="flex items-center gap-2 flex-wrap">
-                {data.map ((pais:any) => (
+                {data.map ((pais:Country) => (
                     <div key={pais.name.common} className="flex items-center gap-2">
                         <img
                             src={pais.flags.png}
