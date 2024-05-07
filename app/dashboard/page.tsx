@@ -5,11 +5,11 @@ const getDashboardData = async () => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/dashboard`);
         const data = await response.json();
-        return data || [];
+        return data;
 
     } catch (error) {
         console.error('Error fetching dashboard data:', error);
-        return [];
+        return {data:  []};
     }
 };
 
