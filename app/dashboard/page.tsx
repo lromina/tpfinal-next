@@ -22,7 +22,7 @@ export default async function Page() {
         <div className="flex flex-col gap-4">
             <div>Paises</div>
             <div className="flex items-center gap-2 flex-wrap">
-                {data.map ((pais) => (
+                {data.map ((pais:any) => (
                     <div key={pais.name.common} className="flex items-center gap-2">
                         <img
                             src={pais.flags.png}
