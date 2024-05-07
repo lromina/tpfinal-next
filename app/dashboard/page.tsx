@@ -3,15 +3,15 @@
 const getDashboardData = async () => {
 
     try {
-        const response = await fetch('http://localhost:3000/api/dashboard'); //cuando nosotros vamos a llamar desde el servidor debemos
-        // pasarle toda la URL
+        const response = await fetch(`${process.env.NEXT_PUCLIC_URL}/api/dashboard`); //cuando nosotros vamos a llamar desde el servidor debemos
+        // pasarle toda la URL -- EN ESTE CASO LE PASAMOS LA QUE NOSOTROS CARGAMOS DESDE EL .ENV
         const data = await response.json();
     
-        return data;
+        return data || {};
 
     } catch (error) {
         console.log(error)
-        return { data: []}
+        return {}
     }
    
 }
