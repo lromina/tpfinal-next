@@ -1,20 +1,17 @@
 
+import Image from 'next/image';
 //puedo hacer una peticion a mi api dentro de mi page que es exclusivo de next
 const getDashboardData = async () => {
-
     try {
-        const response = await fetch(`${process.env.NEXT_PUCLIC_URL}/api/dashboard`); //cuando nosotros vamos a llamar desde el servidor debemos
-        // pasarle toda la URL -- EN ESTE CASO LE PASAMOS LA QUE NOSOTROS CARGAMOS DESDE EL .ENV
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/dashboard`);
         const data = await response.json();
-    
-        return data || {};
+        return data || [];
 
     } catch (error) {
-        console.log(error)
-        return {}
+        console.error('Error fetching dashboard data:', error);
+        return [];
     }
-   
-}
+};
 
 export default async function Page() {
     try {
@@ -39,7 +36,7 @@ export default async function Page() {
             <div className="flex items-center gap-2 flex-wrap">
                 {data.map ((pais:any) => (
                     <div key={pais.name.common} className="flex items-center gap-2">
-                        <img
+                        <Image
                             src={pais.flags.png}
                             alt={pais.name.common}
                             className="w-10 h-10"
