@@ -5,7 +5,7 @@ const getDashboardData = async () => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/dashboard`);
         const data = await response.json();
-        return {data:  []};
+        return data || {};
 
     } catch (error) {
         console.error(error);
@@ -27,7 +27,7 @@ export default async function DashboardPage() {
     //     };
     //   }
 
-    console.log('Tipo de datos de data:', typeof data);
+    // console.log('Tipo de datos de data:', typeof data);
     return (
 
         //vamos a recorrer todos los paises 
