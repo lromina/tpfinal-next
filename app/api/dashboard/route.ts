@@ -7,7 +7,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
     const data = await response.json();
 
-    // console.log('data' ,data)
+    console.log('data' ,data)
 
     return Response.json ({ data });
 }

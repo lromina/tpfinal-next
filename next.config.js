@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    //para poder utilizar image necesito agregar los datos a la configuracion
+
+    images: {
+      domains: ['flagcdn.com', 'upload.wikimedia.org'],
+      },
+
+};
 
 module.exports = nextConfig;
