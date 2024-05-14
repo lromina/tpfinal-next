@@ -1,31 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
-import users from "@/app/api/users.json";
-import { createClient } from "@/app/utils/server";
+import { createServerClient} from "@/app/utils/server";
+
 
 
 export const POST = async (req: NextRequest , res: NextResponse) => {
     //para obtener el valor del body debemos obtenerlo a traves de un await
     const body = await req.json();
+    const {user, clave} = body;
 
     //Supabase conexion
-
-    // const supabase = createClient()
-
-    // console.log('data recibida', body);
-    //una vez obtenido los datos lo guardamos en un const user-clave que es lo que recibimos 
-    //lo mismo que haciamos en express
-    const{user, clave} = body;
+    const supabase = createServerClient();
     //comparamos los datos
-    const usuarioEncontrado = users.usuarios.find(u => u.user === user && u.clave === clave);
+   const usuarioEncontrado = await supabase.from("users")
+   .select("*")
+   .filter('username', 'eq',user)
+   .filter('password', 'eq',clave)
+   .limit(1)
+   .single();
 
-    console.log('objJSON', users);
-    console.log('usuario encontrado', usuarioEncontrado)
+    console.log("supabase" , usuarioEncontrado);
+
+    //comparamos los datos
+    // const usuarioEncontrado = users.data?.find(u => u.username === user && u.password === clave);
+
+    // console.log('objJSON', users);
+    // console.log('usuario encontrado', usuarioEncontrado)
     //creamos una constante para guardar los datos del archivo json
-    if (usuarioEncontrado !== undefined){
+    if (usuarioEncontrado.data !== null){
         return Response.json({menssage: 'Bienvenido'})
     }else{
-        return Response.json({menssage: 'Usuario no encontrado'})
-    }        //mostramos en postman esos datos. 
+        return Response.json({menssage: 'Usuario No encontrado'},{
+        status: 401,
+    })
+    }       
 
 
    

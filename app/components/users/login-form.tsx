@@ -18,8 +18,8 @@ export const LoginForm = () => {
 
         // get form data
         const formData = new FormData(event.currentTarget);
-        const user = formData.get('user')?.toString();
-        const clave = formData.get('clave')?.toString();
+        const user = formData.get('user');
+        const clave = formData.get('clave');
 
         // console.log('user', user);
         // console.log('password', clave);
@@ -38,14 +38,18 @@ export const LoginForm = () => {
 
         // console.log('data recibida' , data);
 
-        if (response.ok === false) {
-          setError(data.message);
+       
+        if (response.ok === false && response.status === 401) {
+          setError(data.menssage);
         } else {
           router.push('/dashboard');
         }
       }}
     >
       <h1 className="text-4xl font-bold mb-8">Iniciar sesión</h1>
+
+      
+
       <input
         type="text"
         name="user"
@@ -64,6 +68,7 @@ export const LoginForm = () => {
       >
         Ingresar
       </button>
+      
       <div>
         <Link href="#" className='text-blue-700 text-sm font-bold mr-5 '>
           Olvide mi Clave!
@@ -72,7 +77,7 @@ export const LoginForm = () => {
           Registrarse
         </Link>
       </div>
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500 font-bold">{error}</p>}
     </form>
   );
 };

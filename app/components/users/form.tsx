@@ -96,16 +96,17 @@ export default function FormCreate(){
           <div className="mt-6 flex items-center justify-end gap-x-6">
             <Link className="text-sm font-semibold leading-6 text-blue-900" href="/login">
                 ¿Ya tienes cuenta?
-            </Link>             
-            <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-              Cancelar
-            </button>
-            <button
-              type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-             Guardar
-            </button>
+            </Link>
+          
+            <Link className="text-sm font-semibold leading-6 text-blue-900" href="/">
+                <button>Cancelar</button>
+            </Link>
+           
+            <Link className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="/">
+                <button>Guardar</button>
+            </Link>
+           
+          
           </div>
         </form>
     );
