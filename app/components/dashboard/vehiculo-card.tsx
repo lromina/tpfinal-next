@@ -14,7 +14,7 @@ export const TarjetaVehiculo = ({ vehiculo }: any) => {
         }}>
           
           <div className="ml-2">
-            <p className="texto-gris-500">{vehiculo.patente}</p>
+            <h2 className="text-1.5rem md:text-2rem font-medium" >{vehiculo.patente}</h2>
             
             <img src={vehiculo.img} 
             alt="Imagen del Vehículo" 

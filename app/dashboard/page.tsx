@@ -15,9 +15,18 @@ export default async function PaginaVehiculo() {
 
   
     return (
+      
+
       <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-center bg-gray-900 text-white text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+        <button>Cerrar sesión</button>
+        </div>
+        <div className="flex items-center justify-center bg-gray-900 text-white text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+        <button>Agregar</button>
+        </div>
+    
         <div>
-          <h1>Vehículos</h1>
+          <h1 className="text-2xl md:text-4xl font-medium" style={{ fontFamily: 'Roboto condensed, sans-serif' }}>Vehículos</h1>
         </div>
         <div className="flex flex-wrap gap-4">
           {vehiculos?.map((vehiculo: any) => ( // Usar 'datos' del estado -- como el valor no puede ser nulo se le agrega ?

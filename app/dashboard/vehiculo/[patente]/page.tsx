@@ -9,17 +9,31 @@ export default async function VehiculoPorIdPage({params}: any){
         // console.log(data)
 
         return (
-            <div className='flex flex-col items-center gap-2 w-52'>
-                <h1>{data?.patente}</h1>
+            <div className='flex flex-col items-center gap-2 flex-grow max-w-72'>
+                <h1 className="text-2xl md:text-4xl font-medium" style={{ fontFamily: 'Roboto condensed, sans-serif' }}>Datos del Vehiculo</h1>
+                <h2 className='text-2xl md:text-4xl'>Patente:{data?.patente}</h2>
     
                 <img src={data.img} 
                 alt="Imagen del Vehículo" 
-                className="w-300 h-100 redondeado-md" />
-                <h1>{data?.modelo}</h1>
-                <h1>{data?.marca}</h1>
+                className="w-100 h-80 redondeado-md" />
+                <h2 className='text-1.5rem md:text-2rem'>Modelo:{data?.modelo}</h2>
+                <h2>Marca:{data?.marca}</h2>
+
+                <div className="flex items-center justify-center bg-gray-900 text-white text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+        <button>Modificar</button>
+        </div>
+        <div className="flex items-center justify-center bg-gray-900 text-white text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+        <button>Eliminar</button>
+        </div>
+        <div className="flex items-center justify-center bg-gray-900 text-white text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+        <a href="/dashboard"><button>Cancelar</button></a>
+        </div>
                 
     
             </div>
+
+
+            
     
     
         )

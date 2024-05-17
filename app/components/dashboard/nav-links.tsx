@@ -18,7 +18,7 @@ const links = [
     name: 'Contacto', href: '/contacto', icon: DocumentDuplicateIcon,
   },
  
-  { name: 'Trabaja con Nosotros', href: '/login', icon: UserGroupIcon },
+  { name: 'Iniciar Sesion', href: '/login', icon: UserGroupIcon },
 ];
 
 export default function NavLinks() {
