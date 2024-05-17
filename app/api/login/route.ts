@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerClient} from "@/app/utils/server";
+import { error } from "console";
 
 
 
@@ -11,12 +12,18 @@ export const POST = async (req: NextRequest , res: NextResponse) => {
     //Supabase conexion
     const supabase = createServerClient();
     //comparamos los datos
-   const usuarioEncontrado = await supabase.from("users")
-   .select("*")
-   .filter('username', 'eq',user)
-   .filter('password', 'eq',clave)
-   .limit(1)
-   .single();
+//    const usuarioEncontrado = await supabase.from("users")
+//    .select("*")
+//    .filter('username', 'eq',user)
+//    .filter('password', 'eq',clave)
+//    .limit(1)
+//    .single();
+
+    const {data: usuarioEncontrado, error} = await supabase.auth.signInWithPassword ({
+        email:user,
+        password:clave,
+    })
+
 
     console.log("supabase" , usuarioEncontrado);
 
@@ -26,7 +33,7 @@ export const POST = async (req: NextRequest , res: NextResponse) => {
     // console.log('objJSON', users);
     // console.log('usuario encontrado', usuarioEncontrado)
     //creamos una constante para guardar los datos del archivo json
-    if (usuarioEncontrado.data !== null){
+    if (error === null){
         return Response.json({menssage: 'Bienvenido'})
     }else{
         return Response.json({menssage: 'Usuario No encontrado'},{

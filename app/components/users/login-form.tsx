@@ -1,8 +1,12 @@
 'use client';
 
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+
+
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | null>(null);
@@ -18,12 +22,14 @@ export const LoginForm = () => {
 
         // get form data
         const formData = new FormData(event.currentTarget);
-        const user = formData.get('user');
-        const clave = formData.get('clave');
+        const user = formData.get('user')?.toString();
+        const clave = formData.get('clave')?.toString();
 
         // console.log('user', user);
         // console.log('password', clave);
 
+   
+       
         //creamos una constante donde le enviamos nuestros datos a la api
         const response = await fetch('/api/login', {
           method: 'POST',
@@ -53,7 +59,7 @@ export const LoginForm = () => {
       <input
         type="text"
         name="user"
-        placeholder="Usuario"
+        placeholder="Email"
         className="w-80 h-12 p-4 mb-4 border-2 border-gray-300 text-black"
       />
       <input

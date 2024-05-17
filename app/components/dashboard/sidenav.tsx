@@ -13,7 +13,6 @@
 // }
 import Link from 'next/link';
 import NavLinks from '@/app/components/dashboard/nav-links';
-import { montserrat } from '@/app/ui/fonts';
 import Image from 'next/image';
 
 export default function SideNav() {
