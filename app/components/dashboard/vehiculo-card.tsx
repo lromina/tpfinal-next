@@ -10,7 +10,7 @@ export const TarjetaVehiculo = ({ vehiculo }: any) => {
       
         className="flex flex-col items-center gap-2 w-52"
         onClick={() => {
-            router.push(`/api/dashboard/vehiculo/${vehiculo.patente}`)
+            router.push(`/dashboard/vehiculo/${vehiculo.patente}`)
         }}>
           
           <div className="ml-2">
