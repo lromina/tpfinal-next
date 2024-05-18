@@ -1,7 +1,9 @@
 
 'use client';
 
-import {  useRouter } from "next/navigation"
+import {  useRouter } from "next/navigation";
+
+
 
 export const TarjetaVehiculo = ({ vehiculo }: any) => {
     const router = useRouter();
@@ -22,6 +24,9 @@ export const TarjetaVehiculo = ({ vehiculo }: any) => {
           
             
           </div>
+
+          <a className="text-sm font-semibold leading-6 text-blue-900" href={`/dashboard/vehiculo/${vehiculo.patente}`}><button>+INFO</button></a>
+        
         </div>
 
      
