@@ -1,4 +1,4 @@
-
+'use client';
 
 import { createClient } from "@/app/utils/client"
 import Link from "next/link";
