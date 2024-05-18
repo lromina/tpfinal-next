@@ -17,7 +17,7 @@ export const EditVehiculoForm = ({vehiculo}: EditVehiculoFormProps) => {
    
     const supabase = createClient();
     const router = useRouter();
-    const formRef = useRef(null);
+    const formRef = useRef<HTMLFormElement>(null);
 
     const onsubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -44,15 +44,17 @@ export const EditVehiculoForm = ({vehiculo}: EditVehiculoFormProps) => {
 
             if (formRef.current) { // Comprobar si el formulario existe antes de restablecerlo
                 formRef.current.reset();
-                alert('Vehículo Modificado exitosamente!')
-                router.push(`/dashboard/vehiculo/${patente}`)
+            alert('Vehículo Modificado exitosamente!')
+            router.push(`/dashboard/vehiculo/${patente}`)
+  
+              
 
               }
 
         
 
-        //   event.currentTarget.reset();
-
+          // event.currentTarget.reset();
+         
     }
  
     return (

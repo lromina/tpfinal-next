@@ -7,7 +7,7 @@ import React, { useRef } from 'react';
 
 export const CreateVehiculoForm = () => {
     const supabase = createClient();
-    const formRef = useRef(null);
+    const formRef = useRef<HTMLFormElement>(null);
 
  
     return (
@@ -27,15 +27,23 @@ export const CreateVehiculoForm = () => {
             .insert({ patente, modelo, marca, img });
 
 
-            if (formRef.current) { // Comprobar si el formulario existe antes de restablecerlo
-                formRef.current.reset();
-                alert('Vehículo creado exitosamente!')
+            // if (formRef.current) { // Comprobar si el formulario existe antes de restablecerlo
+            //     formRef.current.reset();
+            //     alert('Vehículo creado exitosamente!')
+               
+            //   }
 
-              }
+            if (formRef.current) {
+              formRef.current.reset();
+              alert('Vehículo creado exitosamente!')
+            } else {
+              // Maneja el caso en el que la referencia del formulario no está disponible (opcional)
+              console.error('Referencia del formulario no disponible para restablecer');
+            }
+            
 
-        
-
-        //   event.currentTarget.reset();
+          // event.currentTarget.reset();
+         
         }}
       >
         <div className="border-b border-gray-900/10 pb-12">
