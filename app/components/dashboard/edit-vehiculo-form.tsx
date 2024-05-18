@@ -13,7 +13,7 @@ interface EditVehiculoFormProps {
 
 
 export const EditVehiculoForm = ({vehiculo}: EditVehiculoFormProps) => {
-    console.log('propiedad vehicle:', vehiculo)
+    // console.log('propiedad vehicle:', vehiculo)
    
     const supabase = createClient();
     const router = useRouter();
@@ -30,11 +30,11 @@ export const EditVehiculoForm = ({vehiculo}: EditVehiculoFormProps) => {
           const img = formData.get('img')?.toString();
 
 
-          console.log('Valores del formulario:');
-          console.log('Patente:', formData.get('patente'));
-          console.log('Modelo:', formData.get('modelo'));
-          console.log('Marca:', formData.get('marca'));
-          console.log('URL imagen:', formData.get('img'));
+        
+        //   console.log('Patente:', formData.get('patente'));
+        //   console.log('Modelo:', formData.get('modelo'));
+        //   console.log('Marca:', formData.get('marca'));
+        //   console.log('URL imagen:', formData.get('img'));
 
           await supabase
             .from('vehiculos')
@@ -44,7 +44,7 @@ export const EditVehiculoForm = ({vehiculo}: EditVehiculoFormProps) => {
 
             if (formRef.current) { // Comprobar si el formulario existe antes de restablecerlo
                 formRef.current.reset();
-                alert('Vehículo MODIFICADO exitosamente!')
+                alert('Vehículo Modificado exitosamente!')
                 router.push(`/dashboard/vehiculo/${patente}`)
 
               }
@@ -146,7 +146,7 @@ export const EditVehiculoForm = ({vehiculo}: EditVehiculoFormProps) => {
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Editar
+            Guardar
           </button>
 
           <Link

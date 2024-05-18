@@ -1,3 +1,4 @@
+import { DeleteVehiculosButton } from '@/app/components/dashboard/delete-vehiculos-button';
 import { createServerClient } from '@/app/utils/server';
 
 export default async function VehiculoPorIdPage({ params }: any) {
@@ -31,11 +32,11 @@ export default async function VehiculoPorIdPage({ params }: any) {
 
         <div className="flex items-center justify-center rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-gray-300 text-white hover:bg-gray-700 hover:text-white">
           <a href={`/dashboard/vehiculo/${data?.patente}/edit`}>
-            <button>Modificar</button>
+            <button>Editar</button>
           </a>
         </div>
         <div className="flex items-center justify-center rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-gray-300 text-white hover:bg-gray-700 hover:text-white">
-          <button>Eliminar</button>
+          < DeleteVehiculosButton vehiculo={data} />
         </div>
         <div className="flex items-center justify-center rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-gray-300 text-white hover:bg-gray-700 hover:text-white">
           <a href="/dashboard">
