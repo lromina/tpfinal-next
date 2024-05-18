@@ -27,12 +27,6 @@ export const CreateVehiculoForm = () => {
             .insert({ patente, modelo, marca, img });
 
 
-            // if (formRef.current) { // Comprobar si el formulario existe antes de restablecerlo
-            //     formRef.current.reset();
-            //     alert('Vehículo creado exitosamente!')
-               
-            //   }
-
             if (formRef.current) {
               formRef.current.reset();
               alert('Vehículo creado exitosamente!')
