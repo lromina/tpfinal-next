@@ -92,139 +92,58 @@
 //   );
 // };
 
-
-
 'use client';
-
 
 import { createClient } from "@/app/utils/client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-
-// export default function LoginForm(){
-  
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter()
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-
-  const supabase= createClient();
-
-
-
-  // useEffect(()=> {
-  //   async function getUser(){
-  //     const {data: {user}} = await supabase.auth.getUser()
-  //     setUser(user)
-  //     setLoading(false)
-  //   }
-  //   getUser();
-  // }, []
-  // )
-
-
-  useEffect(() => {
-    const getUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        console.error('Error getting user:', error);
-        setUser(null);
-      } else {
-        setUser(data.user);
-      }
-      setLoading(false);
-    };
-
-    getUser();
-  }, []);
-
+  const supabase = createClient();
 
   const onSignUp = async () => {
-    await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-          emailRedirectTo: `${location.origin}/auth/callback`
+        emailRedirectTo: `${location.origin}/auth/callback`
       }
-    })
-    router.refresh();
-    setEmail('')
-    setPassword('')
+    });
 
-  }
+    if (error) {
+      setError(error.message);
+    } else {
+      router.push('/');
+    }
+  };
 
   const onSignIn = async () => {
-    await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
+    });
 
-    })
-    router.push('/dashboard');
-    setEmail('')
-    setPassword('')
-    
-   
-  }
+    if (error) {
+      setError(error.message);
+    } else {
+      router.push('/dashboard');
+    }
+  };
 
-  // console.log ({loading, user});
-
-  if(loading){
-    return <h1>Loading</h1>
-  }
-
-  return(
-
+  return (
     <form
       className="flex flex-col items-center"
-
-
-      onSubmit={async (event) => { // funcion que previene q no se recargue la pagina, que este ok y enviar la pagina y lo hacemos asincrono
+      onSubmit={async (event) => {
         event.preventDefault();
-
-        console.log('event' , event);
-
-        //get form data
-        const formData = new FormData(event.currentTarget);
-        const user = formData.get('user')?.toString();
-        const clave = formData.get('clave')?.toString();
-
-        console.log('user', user);
-        console.log('password', clave);
-
-   
-       
-        //creamos una constante donde le enviamos nuestros datos a la api
-        const response = await fetch('/api/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ user, clave }), //lo cambiamos a string
-        });
-
-        //creamos una constante que espera los datos del json
-        const data = await response.json();
-
-        console.log('data recibida' , data);
-
-       
-        if (response.ok === false && response.status === 401) {
-          setError(data.menssage);
-        } else {
-          router.push('/dashboard');
-        }
+        onSignIn();
       }}
     >
-
-
-      <h1 className="text-4xl font-bold mb-8">Iniciar sesión</h1>      
-
+      <h1 className="text-4xl font-bold mb-8">Iniciar sesión</h1>
       <input
         type="email"
         name="user"
@@ -241,28 +160,22 @@ export const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         className="w-80 h-12 p-4 mb-4 border-2 border-gray-300 text-black"
       />
-
       <button
-        onClick={onSignIn}
         className="w-full mb-2 p-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:outline-none"
         type="submit"
       >
-        Iniciar Sesion
+        Iniciar Sesión
       </button>
-
       <button
         onClick={onSignUp}
         className="w-full mb-2 p-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:outline-none"
-        type="submit"
+        type="button"
       >
         Registrarse
       </button>
-
-      
       {error && <p className="text-red-500 font-bold">{error}</p>}
     </form>
-  )
+  );
+};
 
-
-}
 
